@@ -1,0 +1,28 @@
+name: ROS2 CI for simple project
+
+on:
+  push:
+    branches: 
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    container:
+      image: ros:humble-ros-base
+    steps:
+      - uses : actions/checkout@v2
+      - name : Environment Setup
+        run: |
+          sudo apt update && sudo apt install -y python3-colcon-common-extensions
+          source /opt/ros/humble/setup.bash
+      
+      - name : Build package
+        run: colcon build --packages-select  simple_project --symlink-install
+      - name : Test package
+        run: colcon test --packages-select simple_project --symlink-install
+      - name : Test Result
+        run: colcon test-result --verbose
