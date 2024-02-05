@@ -25,7 +25,8 @@ jobs:
 
       - name: Check out repository
         uses: actions/checkout@v3
-        with: ros2_ws/src/ros2_cicd
+        with: 
+          path: ros2_ws/src/simple_project
 
       - name: Install dependencies
         run: |
