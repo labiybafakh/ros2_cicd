@@ -11,13 +11,13 @@ on:
 jobs:
   build_and_test:
     strategy:
-    matrix:
-      os: 
-        - ubuntu-22.04
-      rosdistro:
-        - humble
+      matrix:
+        os: 
+          - ubuntu-22.04
+        rosdistro:
+          - humble
       
-    runs-on: ubuntu-latest
+    runs-on: {{ matrix.os }}
 
     container:
       image: ros:${{ matrix.rosdistro}}-ros-base
@@ -27,7 +27,7 @@ jobs:
 
       - name: Check out repository
         uses: actions/checkout@v3
-        with: ros2_ws/src/ros2_topic_sample
+        with: ros2_ws/src/simple_project
 
       - name: Install dependencies
         run: |
