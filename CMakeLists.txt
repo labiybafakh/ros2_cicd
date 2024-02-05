@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(simple_project)
+project(ros2_cicd)
 
 if(NOT CMAKE_C_STANDARD)
   set(CMAKE_C_STANDARD 99)
